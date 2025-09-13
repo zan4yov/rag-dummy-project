@@ -67,6 +67,28 @@ mini-rag-ui/
 └─ LICENSE
 ```
 
+# Stack & Peran — Mini RAG 
+
+**Bahasa & runtime**
+- **Python 3.x** – bahasa utama.
+
+**UI**
+- **Streamlit** (`streamlit>=1.29.0`) — bikin UI chat sederhana + sidebar kontrol + panel sumber.
+
+**Retrieval (pencarian konteks)**
+- **Sentence Transformers** (`sentence-transformers>=2.7.0`) — bikin **embedding** teks pakai model:
+  - `all-MiniLM-L6-v2` (ringan & cepat di CPU).
+- **FAISS CPU** (`faiss-cpu>=1.7.4`) — **vector index** untuk nearest-neighbor search (di proyek ini: `IndexFlatIP` untuk cosine similarity).
+- **NumPy** (`numpy>=1.23.0`) — operasi vektor/matriks.
+
+**LLM (generasi jawaban)**
+- **Transformers** (`transformers>=4.44.0`) + **Torch (CPU)** (`torch>=2.0.0`) — LLM **offline** default:
+  - `google/flan-t5-small` (bawaan, cukup untuk demo di CPU).
+  - Bisa ganti via env `MODEL_NAME` (mis. `google/flan-t5-base`).
+
+**OpenAI (opsional)**
+- **OpenAI** (`openai>=1.40.0`) — kalau set **`OPENAI_API_KEY`**, backend bisa pakai **GPT** (default di kode: `gpt-4o-mini`).
+
 ## Menambah dokumen
 - Tambahkan file `.md` atau `.txt` ke folder `data/`.
 - Jalankan `python ingest.py` (atau cukup restart `streamlit run app.py` — akan auto-build jika index belum ada).
