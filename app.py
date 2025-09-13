@@ -9,7 +9,7 @@ from rag.utils import ensure_store, format_sources_panel
 st.set_page_config(page_title="Mini RAG • Komeng", page_icon="🔎", layout="wide")
 
 st.title("🔎 Mini RAG – Demo Sederhana")
-st.caption("Dummy FAQ • Komeng Workspace")
+st.caption("Dummy FAQ")
 
 # Sidebar controls
 with st.sidebar:
@@ -44,7 +44,7 @@ for msg in st.session_state.history:
             format_sources_panel(msg["sources"])
 
 # Chat input
-prompt = st.chat_input("Tanya apa saja tentang Komeng Workspace…")
+prompt = st.chat_input("Tanya apa saja")
 if prompt:
     st.session_state.history.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
