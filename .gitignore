@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# Streamlit cache
+.streamlit/**/cache/
+.streamlit/**/logs/
+
+# FAISS index & artifacts
+store/
+!.keep
+
+# OS
+.DS_Store
+Thumbs.db
