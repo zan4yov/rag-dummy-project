@@ -1,4 +1,4 @@
-# Mini RAG + Streamlit (Dummy Project)
+# Mini RAG + Streamlit (Dummy Project) by zan4yov
 
 Proyek RAG mini dengan UI sederhana pakai **Streamlit**. Cocok buat demo / dipush ke GitHub.
 Data dummy berisi FAQ produk fiktif *Komeng Workspace*.
