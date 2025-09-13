@@ -10,6 +10,22 @@ Data dummy berisi FAQ produk fiktif *Komeng Workspace*.
 - 🖥️ UI sederhana ala chat + daftar sumber.
 - 📦 Script `ingest.py` untuk membangun index dari folder `data/`.
 
+Cocok untuk sektor apa?
+
+##RAG bersifat lintas-domain. Contoh sektor & use case:
+
+Sektor	Use Case	Dampak
+| Sektor           | Use Case                                           | Dampak                                                     |
+|------------------|----------------------------------------------------|------------------------------------------------------------|
+| Customer Support | FAQ, troubleshooting, kebijakan pengembalian       | Jawaban konsisten & cepat, beban tiket berkurang           |
+| Sales/CS         | Q&A tentang produk, harga, perbandingan            | Respons cepat, bantu discovery & objection handling        |
+| HR               | Kebijakan cuti, benefit, SOP onboarding            | Kurangi pertanyaan berulang, self-service karyawan         |
+| IT/Helpdesk      | Runbook, how-to tools, incident tips               | MTTR turun, dokumentasi hidup                              |
+| Legal/Compliance | Kebijakan, ketentuan, ringkasan klausul            | Akses cepat ke referensi resmi                             |
+| Edu/Training     | Materi pelatihan, modul belajar internal           | Pembelajaran kontekstual dari materi internal              |
+
+Catatan: proyek ini adalah dummy; ganti dataset data/ dengan dokumen organisasi Anda agar relevan.
+
 ## Cara jalanin (lokal)
 ```bash
 python -m venv .venv && source .venv/bin/activate  # (Windows: .venv\Scripts\activate)
@@ -21,6 +37,15 @@ python ingest.py
 # Jalankan UI
 streamlit run app.py
 ```
+
+## Cara memakai fitur (end-user)
+
+1. Masukkan pertanyaan di input chat.
+2. Atur Top-K (berapa banyak potongan konteks yang dipakai; default 4). Nilai lebih tinggi = lebih luas, tapi bisa lebih "bising".
+3. Atur Temperature (0.0–1.5). Lebih rendah = jawaban lebih deterministik.
+4. Pilih Backend: Offline (cepat, tanpa API) atau OpenAI (jika tersedia untuk kualitas lebih baik).
+5. Lihat panel Sumber untuk verifikasi fakta.
+6. Klik “Bangun ulang index” di sidebar jika mengganti isi data/.
 
 ## Struktur repo
 ```
@@ -54,6 +79,17 @@ mini-rag-ui/
 ## Catatan performa
 - Model offline kecil (flan-t5-small) jalan di CPU, cukup untuk demo.
 - Untuk dataset besar atau latensi rendah, sebaiknya pakai layanan LLM hosted.
+
+## FAQ singkat
+
+Q: Perlu GPU?
+A: Tidak. Proyek demo jalan di CPU. GPU mempercepat, tapi tak wajib.
+
+Q: Kenapa jawaban kadang generik?
+A: Perbesar kualitas data; kurangi Temperature; tambah Top-K secukupnya; pertimbangkan model yang lebih kuat.
+
+Q: Bisakah membatasi agar hanya menjawab dari konteks?
+A: Ya—logika prompt sudah mengarahkan. Bisa diperketat (mis. tolak jika konteks kosong).
 
 ## Lisensi
 MIT
